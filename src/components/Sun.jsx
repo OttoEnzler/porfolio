@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { profile, contact } from "../data/portfolio";
+import { profile } from "../data/portfolio";
 
 // Sol central: nombre + rol + CTAs. El glow pulsa salvo reduced-motion (manejado por CSS global).
 export default function Sun() {
