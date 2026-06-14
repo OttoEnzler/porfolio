@@ -21,7 +21,7 @@ export default function Contact() {
             key={it.label}
             href={it.href}
             target={it.href.startsWith("http") ? "_blank" : undefined}
-            rel="noopener noreferrer"
+            rel={it.href.startsWith("http") ? "noopener noreferrer" : undefined}
             className="cursor-pointer rounded-2xl border border-white/10 bg-white/5 p-5 text-left backdrop-blur transition-colors duration-200 hover:border-white/25 hover:bg-white/10"
           >
             <span className="font-display text-xs uppercase tracking-wide text-sun">{it.label}</span>

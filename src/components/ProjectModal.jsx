@@ -30,7 +30,7 @@ export default function ProjectModal({ project, onClose }) {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label={project.name}
+            aria-labelledby="modal-title"
             initial={{ scale: 0.92, y: 20, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.92, y: 20, opacity: 0 }}
@@ -49,7 +49,7 @@ export default function ProjectModal({ project, onClose }) {
               </svg>
             </button>
 
-            <h3 className="font-display text-xl font-bold text-white">{project.name}</h3>
+            <h3 id="modal-title" className="font-display text-xl font-bold text-white">{project.name}</h3>
             <p className="mt-1 font-body text-sm text-slate-400">{project.short}</p>
             <p className="mt-4 font-body text-sm leading-relaxed text-slate-200">
               {project.description}
