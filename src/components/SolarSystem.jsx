@@ -1,11 +1,31 @@
-import { motion } from "framer-motion";
+import { motion, useTime, useTransform } from "framer-motion";
 import { projects } from "../data/portfolio";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import Sun from "./Sun";
 import Planet from "./Planet";
 
+// Un planeta animado recorriendo su elipse (rx, ry) con velocidad derivada de `duration`.
+// Posición: x = cos(θ)·rx, y = sin(θ)·ry, medida desde el centro del sistema.
+function OrbitingPlanet({ project, onSelect }) {
+  const { rx, ry, duration, phase, size } = project.orbit;
+  const time = useTime();
+  // θ avanza 2π radianes cada `duration` segundos, partiendo de `phase`.
+  const angle = useTransform(time, (t) => phase + (t / 1000) * ((2 * Math.PI) / duration));
+  const x = useTransform(angle, (a) => Math.cos(a) * rx);
+  const y = useTransform(angle, (a) => Math.sin(a) * ry);
+
+  return (
+    <motion.div
+      className="absolute left-1/2 top-1/2"
+      style={{ x, y, marginLeft: -size / 2, marginTop: -size / 2 }}
+    >
+      <Planet project={project} onSelect={onSelect} />
+    </motion.div>
+  );
+}
+
 // Hero: el sol al centro y cada proyecto orbitando en su elipse.
-// Desktop: órbitas animadas. Mobile/reduced-motion: planetas estáticos en columna.
+// Desktop: órbitas animadas reales. Mobile/reduced-motion: planetas estáticos en columna.
 export default function SolarSystem({ onSelect }) {
   const reduced = usePrefersReducedMotion();
 
@@ -29,32 +49,13 @@ export default function SolarSystem({ onSelect }) {
         <div className="relative hidden h-[640px] w-full max-w-[1000px] items-center justify-center md:flex">
           {projects.map((p) => (
             <div key={p.id} className="absolute inset-0 flex items-center justify-center">
-              {/* Anillo de órbita */}
+              {/* Anillo de órbita (elipse que coincide con la trayectoria del planeta) */}
               <div
                 aria-hidden="true"
                 className="absolute rounded-[50%] border border-white/10"
                 style={{ width: p.orbit.rx * 2, height: p.orbit.ry * 2 }}
               />
-              {/* Planeta rotando alrededor del centro */}
-              <motion.div
-                className="absolute"
-                style={{ width: p.orbit.rx * 2, height: p.orbit.ry * 2 }}
-                initial={{ rotate: (p.orbit.phase * 180) / Math.PI }}
-                animate={{ rotate: 360 + (p.orbit.phase * 180) / Math.PI }}
-                transition={{ duration: p.orbit.duration, ease: "linear", repeat: Infinity }}
-              >
-                <div
-                  className="absolute left-1/2 top-0 -translate-x-1/2"
-                  style={{ /* contrarresta la rotación para que la etiqueta quede legible */ }}
-                >
-                  <motion.div
-                    animate={{ rotate: -(360 + (p.orbit.phase * 180) / Math.PI) }}
-                    transition={{ duration: p.orbit.duration, ease: "linear", repeat: Infinity }}
-                  >
-                    <Planet project={p} onSelect={onSelect} />
-                  </motion.div>
-                </div>
-              </motion.div>
+              <OrbitingPlanet project={p} onSelect={onSelect} />
             </div>
           ))}
           <Sun />
