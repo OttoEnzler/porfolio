@@ -16,7 +16,7 @@ function OrbitingPlanet({ project, onSelect }) {
 
   return (
     <motion.div
-      className="absolute left-1/2 top-1/2"
+      className="pointer-events-auto absolute left-1/2 top-1/2"
       style={{ x, y, marginLeft: -size / 2, marginTop: -size / 2 }}
     >
       <Planet project={project} onSelect={onSelect} />
@@ -48,7 +48,7 @@ export default function SolarSystem({ onSelect }) {
       {!reduced && (
         <div className="relative hidden h-[640px] w-full max-w-[1000px] items-center justify-center md:flex">
           {projects.map((p) => (
-            <div key={p.id} className="absolute inset-0 flex items-center justify-center">
+            <div key={p.id} className="pointer-events-none absolute inset-0 flex items-center justify-center">
               {/* Anillo de órbita (elipse que coincide con la trayectoria del planeta) */}
               <div
                 aria-hidden="true"
