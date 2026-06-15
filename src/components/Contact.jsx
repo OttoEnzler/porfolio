@@ -4,7 +4,6 @@ const items = [
   { label: "Email", value: contact.email, href: `mailto:${contact.email}` },
   { label: "LinkedIn", value: "otto-enzler", href: contact.linkedin },
   { label: "GitHub", value: "OttoEnzler", href: contact.github },
-  { label: "Sitio web", value: "studenko.com.py", href: contact.website },
 ];
 
 export default function Contact() {

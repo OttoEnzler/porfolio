@@ -13,7 +13,6 @@ export const contact = {
   email: "enzler.otto@gmail.com",
   linkedin: "https://linkedin.com/in/otto-enzler-59b35739a",
   github: "https://github.com/OttoEnzler",
-  website: "https://studenko.com.py",
 };
 
 // Cada proyecto es un planeta. 'color' tiñe el planeta; 'orbit' define su elipse.
@@ -48,9 +47,9 @@ export const projects = [
   {
     id: "studenko",
     name: "Studenko",
-    short: "Plataforma web propia en producción",
+    short: "Plataforma web para un cliente, en producción",
     description:
-      "Plataforma web propia desarrollada de punta a punta y desplegada en producción. Backend con FastAPI (API REST, JWT), frontend en React con CMS propio para gestión de contenido, usuarios y configuración. SEO técnico: metadatos, Open Graph, sitemap, robots.txt y Google Search Console.",
+      "Plataforma web desarrollada de punta a punta para un cliente y desplegada en producción; actualmente a cargo de su mantenimiento. Backend con FastAPI (API REST, JWT), frontend en React con CMS a medida para gestión de contenido, usuarios y configuración. SEO técnico: metadatos, Open Graph, sitemap, robots.txt y Google Search Console.",
     stack: ["FastAPI", "React", "Docker", "Render", "Vercel", "SEO"],
     links: [{ label: "Ver sitio", url: "https://studenko.com.py" }],
     color: "#c084fc",
@@ -71,14 +70,14 @@ export const experience = [
     ],
   },
   {
-    role: "Desarrollador Full Stack",
-    org: "Studenko (Freelance)",
-    period: "2024",
+    role: "Desarrollador Full Stack (Freelance)",
+    org: "Studenko · proyecto de cliente",
+    period: "2024 – Actualidad",
     mode: "Remoto",
     points: [
-      "Desarrollo completo de plataforma propia, del diseño al deploy en producción.",
-      "Backend FastAPI con autenticación JWT y CMS propio en React.",
-      "Contenedorización con Docker y deploy en Render y Vercel; SEO técnico.",
+      "Desarrollo completo de la plataforma web de un cliente, del diseño al deploy en producción.",
+      "Backend FastAPI con autenticación JWT y CMS a medida en React.",
+      "Contenedorización con Docker y deploy en Render y Vercel; SEO técnico y mantenimiento en curso.",
     ],
   },
   {
